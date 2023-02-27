@@ -13,7 +13,7 @@
         font-family: Arial, sans-serif;
       }
       header {
-        background-color: rgb(228, 245, 177);
+        background-color: rgb(239, 247, 217);
         color: #5FB11E ;
         padding: 10px;
         text-align: center;
@@ -25,25 +25,23 @@
       }
       .column1 {
         float: left;
-        width: 5%;
-        padding: 10px;
-        height: 100vh;
-        overflow-y: scroll;
-      }
-      .column2 {
-        float: center;
         width: 20%;
         padding: 10px;
         height: 100vh;
         overflow-y: scroll;
       }
-      .column3 {
+      .column2 {
         float: right;
-        width: 75%;
+        width: 80%;
         padding: 10px;
         height: 100vh;
         overflow-y: scroll;
       }
+      img {
+        width: 110%;
+        height: auto;
+        margin: 0 auto;
+        }
       #map {
         height: 100%;
         width: 100%;
@@ -54,20 +52,17 @@
     <header>
       <h1>Bridge Health Monitoring Dashboard</h1>
     </header>
+
     <div class="row">
       <div class="column1">
-        <h2>Icons</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac libero tristique, tempus metus sed, rhoncus magna. Suspendisse potenti. Aenean dignissim augue vel quam accumsan, eu mollis elit viverra. Sed interdum nibh a mauris malesuada ullamcorper. Aliquam aliquet urna in blandit ultricies.</p>
+        <!-- <h2>Icons</h2> -->
+        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac libero tristique, tempus metus sed, rhoncus magna. Suspendisse potenti. Aenean dignissim augue vel quam accumsan, eu mollis elit viverra. Sed interdum nibh a mauris malesuada ullamcorper. Aliquam aliquet urna in blandit ultricies.</p> -->
+        <img src="/Users/admin/Desktop/UW MSTI/Quarter 2/514/project/bridgeFlaskDashboard/static/panel.png" alt="Image Description">
       </div>
 
-      <div class="row">
-        <div class="column2">
-          <h2>East Channel Bridge</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac libero tristique, tempus metus sed, rhoncus magna. Suspendisse potenti. Aenean dignissim augue vel quam accumsan, eu mollis elit viverra. Sed interdum nibh a mauris malesuada ullamcorper. Aliquam aliquet urna in blandit ultricies.</p>
-        </div>
 
-      <div class="column3">
-        <h2>Bridge status monitor</h2>
+      <div class="column2">
+        <!-- <h2>Bridge status monitor</h2> -->
         <div id="map"></div>
       </div>
     </div>
