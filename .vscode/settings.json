@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/21ea5ce1-203b-4afc-b99b-98f81092e0e0/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/bridgeHealthDashboard",
+    "appService.deploySubpath": "."
+}
