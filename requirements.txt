@@ -1,6 +1,6 @@
 absl-py==1.4.0
 adal==1.2.7
-altgraph @ file:///System/Volumes/Data/SWE/Apps/DT/BuildRoots/BuildRoot2/ActiveBuildRoot/Library/Caches/com.apple.xbs/Sources/python3/python3-124/altgraph-0.17.2-py2.py3-none-any.whl
+altgraph 
 astunparse==1.6.3
 azure==4.0.0
 azure-applicationinsights==0.1.1
@@ -95,7 +95,7 @@ cryptography==39.0.1
 deprecation==2.1.0
 Flask==2.2.3
 flatbuffers==23.1.21
-future @ file:///System/Volumes/Data/SWE/Apps/DT/BuildRoots/BuildRoot2/ActiveBuildRoot/Library/Caches/com.apple.xbs/Sources/python3/python3-124/future-0.18.2-py3-none-any.whl
+future 
 gast==0.4.0
 google-auth==2.16.1
 google-auth-oauthlib==0.4.6
@@ -111,7 +111,7 @@ Jinja2==3.1.2
 joblib==1.2.0
 keras==2.11.0
 libclang==15.0.6.1
-macholib @ file:///System/Volumes/Data/SWE/Apps/DT/BuildRoots/BuildRoot2/ActiveBuildRoot/Library/Caches/com.apple.xbs/Sources/python3/python3-124/macholib-1.15.2-py2.py3-none-any.whl
+macholib 
 Markdown==3.4.1
 MarkupSafe==2.1.2
 msrest==0.7.1
@@ -135,7 +135,7 @@ requests-unixsocket==0.3.0
 rsa==4.9
 scikit-learn==1.2.1
 scipy==1.10.1
-six @ file:///System/Volumes/Data/SWE/Apps/DT/BuildRoots/BuildRoot2/ActiveBuildRoot/Library/Caches/com.apple.xbs/Sources/python3/python3-124/six-1.15.0-py2.py3-none-any.whl
+six 
 tensorboard==2.11.2
 tensorboard-data-server==0.6.1
 tensorboard-plugin-wit==1.8.1
