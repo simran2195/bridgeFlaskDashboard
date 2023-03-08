@@ -46,6 +46,58 @@
         height: 100%;
         width: 100%;
       }
+
+      .bridge-status {
+      background-color: #efefdb;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .bridge-status h3 {
+      margin-top: 0;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    button {
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 14px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    .good {
+      background-color: rgb(54, 210, 54);
+    }
+
+    .fair {
+      background-color: rgb(246, 246, 64);
+      color: black;
+    }
+
+    .poor {
+      background-color: rgb(233, 32, 32);
+    }
+
+    .bridge-status + .bridge-status {
+      margin-top: 20px;
+    }
+
+    hr {
+        border: none;
+        border-top: 2px solid rgba(29, 25, 25, 0.419);
+        
+      }
+
+      
+
+
     </style>
   </head>
   <body>
@@ -57,8 +109,41 @@
       <div class="column1">
         <!-- <h2>Icons</h2> -->
         <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac libero tristique, tempus metus sed, rhoncus magna. Suspendisse potenti. Aenean dignissim augue vel quam accumsan, eu mollis elit viverra. Sed interdum nibh a mauris malesuada ullamcorper. Aliquam aliquet urna in blandit ultricies.</p> -->
-        <img src="/Users/admin/Desktop/UW MSTI/Quarter 2/514/project/bridgeFlaskDashboard/static/panel.png" alt="Image Description">
+        <!-- <img src="/Users/admin/Desktop/UW MSTI/Quarter 2/514/project/bridgeFlaskDashboard/static/panel.png" alt="Image Description"> -->
+
+        <div id="data"></div>
+        <div class="bridge-status">
+          <h3>East Channel Bridge</h3>
+          <div class="buttons">
+            <button class="good">Good</button>
+            <!-- <button class="fair">Fair</button> -->
+            <!-- <button class="poor">Poor</button> -->
+          </div>
+          <hr>
+          <p>
+          <strong>Year Opened:</strong> 1937</li>
+          <strong>Type:</strong> Suspension</li>
+          <strong>Length:</strong> 8,981 feet (2,737 m)</li>
+          <strong>Span:</strong> 4,200 feet (1,280 m)</li>
+          <strong>Coordinates:</strong> 37.8199° N, 122.4783° W</p>
+            
+          
+          
+        </div>
+
+        
+        <div class="bridge-status">
+          <h3>Bridge Health Status</h3>
+          <hr>
+          <div class="buttons">
+            <!-- <button class="good">Good</button> -->
+            <button class="fair">Fair</button>
+            <!-- <button class="poor">Poor</button> -->
+          </div>
+        </div>
       </div>
+
+      
 
 
       <div class="column2">
@@ -150,6 +235,48 @@
   
   
         }
+
+        const dataDiv = document.getElementById('data');
+
+      fetch('bridges_in_seattle.csv')
+        .then(response => response.text())
+        .then(csv => {
+          // convert CSV data to JSON format
+          const csvToJson = csv => {
+            const lines = csv.split('\n');
+            const headers = lines.shift().split(',');
+            return lines.map(line => {
+              const data = line.split(',');
+              return headers.reduce((obj, header, index) => {
+                obj[header.trim()] = data[index].trim();
+                return obj;
+              }, {});
+            });
+          };
+          const json = csvToJson(csv);
+
+          // create a table element to display the data
+          const table = document.createElement('table');
+          table.innerHTML = `
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Gender</th>
+            </tr>
+            ${json.map(row => `
+              <tr>
+                <td>${row.Name}</td>
+                <td>${row.Age}</td>
+                <td>${row.Gender}</td>
+              </tr>
+            `).join('')}
+          `;
+
+          // add the table to the div element
+          dataDiv.appendChild(table);
+        })
+        .catch(error => console.error(error));
+
       </script>
     <!-- <script>
       function initMap() {
