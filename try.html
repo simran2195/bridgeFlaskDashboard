@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Bridge Health Monitoring Dashboard</title>
+    <title>ViaWay: Bridge Health Monitoring Dashboard</title>
     <style>
       * {
         box-sizing: border-box;
@@ -13,7 +13,7 @@
         font-family: Arial, sans-serif;
       }
       header {
-        background-color: rgb(239, 247, 217);
+        background-color: rgb(223, 239, 179);
         color: #5FB11E ;
         padding: 10px;
         text-align: center;
@@ -48,13 +48,17 @@
       }
 
       .bridge-status {
-      background-color: #efefdb;
+      background-color: rgba(239, 247, 217, 0.819);
       border-radius: 10px;
       padding: 20px;
     }
 
     .bridge-status h3 {
       margin-top: 0;
+    }
+
+    .bridge-status p {
+      color: rgb(67, 67, 67);
     }
 
     .buttons {
@@ -81,6 +85,10 @@
       color: black;
     }
 
+    .view_data{
+      background-color: #cd3160ef;
+    }
+
     .poor {
       background-color: rgb(233, 32, 32);
     }
@@ -102,7 +110,8 @@
   </head>
   <body>
     <header>
-      <h1>Bridge Health Monitoring Dashboard</h1>
+      <h1>ViaWay</h1>
+      <h3>Bridge Health Monitoring Dashboard</h3>
     </header>
 
     <div class="row">
@@ -111,9 +120,52 @@
         <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac libero tristique, tempus metus sed, rhoncus magna. Suspendisse potenti. Aenean dignissim augue vel quam accumsan, eu mollis elit viverra. Sed interdum nibh a mauris malesuada ullamcorper. Aliquam aliquet urna in blandit ultricies.</p> -->
         <!-- <img src="/Users/admin/Desktop/UW MSTI/Quarter 2/514/project/bridgeFlaskDashboard/static/panel.png" alt="Image Description"> -->
 
-        <div id="data"></div>
-        <div class="bridge-status">
-          <h3>East Channel Bridge</h3>
+        <div class="bridge-status" id="bridge1" data-lat="47.63952" data-lng="-122.29724" data-size="400">
+          <h3>Arboretum Sewer Trestle</h3>
+          <div class="buttons">
+            <!-- <button class="good">Good</button> -->
+            <button class="fair">Fair</button>
+            <!-- <button class="poor">Poor</button> -->
+          </div>
+          <hr>
+          <p>
+          <strong>Year Opened:</strong> 1913<br>
+          <strong>Type:</strong> Arch<br>
+          <strong>Length:</strong> 180 ft (55 m)<br>
+          <strong>Spans:</strong> Lake Washington Boulevard E<br>
+          <strong>Coordinates:</strong> 47.63952°N, 122.29724°W</p>
+          <div class="buttons">
+            <button class="view_data">View live status</button>
+            <!-- <button class="fair">Fair</button> -->
+            <!-- <button class="poor">Poor</button> -->
+          </div>
+      
+        </div>
+
+        <div class="bridge-status" id="bridge2" data-lat="47.65980" data-lng="-122.37622" data-size="200">
+          <h3>Ballard Bridge</h3>
+          <div class="buttons">
+            <!-- <button class="good">Good</button> -->
+            <!-- <button class="fair">Fair</button> -->
+            <button class="poor">Poor</button>
+          </div>
+          <hr>
+          <p>
+          <strong>Year Opened:</strong> 1917<br>
+          <strong>Type:</strong> Bascule<br>
+          <strong>Length:</strong> 2,854 ft (870 m)<br>
+          <strong>Spans:</strong> Salmon Bay<br>
+          <strong>Coordinates:</strong> 47.65980°N, 122.37622°W</p>
+          <div class="buttons">
+            <button class="view_data">View live status</button>
+            <!-- <button class="fair">Fair</button> -->
+            <!-- <button class="poor">Poor</button> -->
+          </div>
+      
+        </div>
+
+        <div class="bridge-status" id="bridge3" data-lat="37.8199" data-lng="-122.4783" data-size="800">
+          <h3>Golden Gates Bridge</h3>
           <div class="buttons">
             <button class="good">Good</button>
             <!-- <button class="fair">Fair</button> -->
@@ -121,26 +173,21 @@
           </div>
           <hr>
           <p>
-          <strong>Year Opened:</strong> 1937</li>
-          <strong>Type:</strong> Suspension</li>
-          <strong>Length:</strong> 8,981 feet (2,737 m)</li>
-          <strong>Span:</strong> 4,200 feet (1,280 m)</li>
+          <strong>Year Opened:</strong> 1937<br>
+          <strong>Type:</strong> Suspension<br>
+          <strong>Length:</strong> 8,981 feet (2,737 m)<br>
+          <strong>Span:</strong> 4,200 feet (1,280 m)<br>
           <strong>Coordinates:</strong> 37.8199° N, 122.4783° W</p>
-            
-          
-          
+          <div class="buttons">
+            <button class="view_data">View live status</button>
+            <!-- <button class="fair">Fair</button> -->
+            <!-- <button class="poor">Poor</button> -->
+          </div>
+      
         </div>
 
         
-        <div class="bridge-status">
-          <h3>Bridge Health Status</h3>
-          <hr>
-          <div class="buttons">
-            <!-- <button class="good">Good</button> -->
-            <button class="fair">Fair</button>
-            <!-- <button class="poor">Poor</button> -->
-          </div>
-        </div>
+
       </div>
 
       
@@ -159,9 +206,10 @@
 
     <script>
         var map;
+        const locations = document.querySelectorAll('.bridge-status');
+        const mapDiv = document.getElementById('map');
         function initMap() {
-   
-    
+
           const bridge1_beg = { lat: 47.578419, lng: -122.203525 };
           const bridge1_end = { lat: 47.579588, lng: -122.198354 };
   
@@ -171,28 +219,7 @@
   
   
   
-  
-          const citymap = {
-            bridge1: {
-              center: { lat: 47.578863, lng: -122.200449 },
-              population: 27148,
-            },
-            bridge2: {
-              // Golden Gates
-              center: { lat: 37.818206, lng: -122.198354 },
-              population: 27148,
-            },
-            // losangeles: {
-            //   center: { lat: 34.052, lng: -118.243 },
-            //   population: 3857799,
-            // },
-            // vancouver: {
-            //   center: { lat: 49.25, lng: -123.1 },
-            //   population: 603502,
-            // },
-          };
-  
-          const image ="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+          // const image ="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
   
           // initialize map
           map = new google.maps.Map(document.getElementById('map'), {
@@ -218,81 +245,53 @@
   
           });
   
-  
-          var myCity = new google.maps.Circle({
-             center:new google.maps.LatLng(47.578814,-122.200543),
-             radius:220,
-          
-             strokeColor:"#B40404",
-             strokeOpacity:0.4,
-             strokeWeight:1,
-          
-             fillColor:"#B40404",
-             fillOpacity:0.2
+
+          function updateMap(lat, lng, size) 
+          {
+            const rad = parseInt(size);
+            const latLng = new google.maps.LatLng(lat, lng);
+            map.panTo(latLng);
+            marker = new google.maps.Marker({
+              position: latLng,
+              map: map
+            });
+
+            circle = new google.maps.Circle({
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#B40404",
+            fillOpacity: 0.35,
+            map: map,
+            center: latLng,
+            radius: rad // radius in meters
           });
-      
-          myCity.setMap(map);
+
+        }
+        
+        
+
+        function setActiveLocation(location) {
+          locations.forEach(loc => loc.classList.remove('active'));
+          location.classList.add('active');
+        }
+
+        locations.forEach(location => {
+          const lat = location.dataset.lat;
+          const lng = location.dataset.lng;
+          const size = location.dataset.size;
+
+          location.addEventListener('click', () => {
+            updateMap(lat, lng, size);
+            setActiveLocation(location);
+          });
+        });
   
   
         }
 
-        const dataDiv = document.getElementById('data');
 
-      fetch('bridges_in_seattle.csv')
-        .then(response => response.text())
-        .then(csv => {
-          // convert CSV data to JSON format
-          const csvToJson = csv => {
-            const lines = csv.split('\n');
-            const headers = lines.shift().split(',');
-            return lines.map(line => {
-              const data = line.split(',');
-              return headers.reduce((obj, header, index) => {
-                obj[header.trim()] = data[index].trim();
-                return obj;
-              }, {});
-            });
-          };
-          const json = csvToJson(csv);
-
-          // create a table element to display the data
-          const table = document.createElement('table');
-          table.innerHTML = `
-            <tr>
-              <th>Name</th>
-              <th>Age</th>
-              <th>Gender</th>
-            </tr>
-            ${json.map(row => `
-              <tr>
-                <td>${row.Name}</td>
-                <td>${row.Age}</td>
-                <td>${row.Gender}</td>
-              </tr>
-            `).join('')}
-          `;
-
-          // add the table to the div element
-          dataDiv.appendChild(table);
-        })
-        .catch(error => console.error(error));
 
       </script>
-    <!-- <script>
-      function initMap() {
-        var center = {lat: 37.7749, lng: -122.4194};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: center
-        });
-        var marker = new google.maps.Marker({
-          position: center,
-          map: map
-        });
-      }
-    </script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1of28Q-W-S5PAQzgdMS8ZuTs59Wjgmmc&callback=initMap">
-    </script> -->
   </body>
 </html>
